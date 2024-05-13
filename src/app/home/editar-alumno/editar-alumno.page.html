@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Editar alumno
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Editar alumno</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!--
+  <ion-radio-group value="strawberries">
+    <ion-radio value="003">Sección 003</ion-radio><br />
+    <ion-radio value="009">Sección 009</ion-radio><br />
+  </ion-radio-group>
+-->
+  <ion-grid>
+    <ion-row>
+    <!--<ion-col><ion-button (click)="getAlumnos()">Cargar Datos</ion-button></ion-col>
+    <ion-col><ion-button (click)="getAlumnos()">Nuevo Alumno</ion-button></ion-col>-->
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <br>
+    <ion-grid>
+      <ion-row>
+      <ion-col>RUT</ion-col>
+      <ion-col>Nombre</ion-col>
+      <ion-col>Opciones</ion-col>
+    </ion-row>
+    <ion-item *ngFor="let alumn of alumno">
+      <ion-col value="id">{{alumn['id']}}</ion-col>
+      <ion-col value="nombre" >{{alumn['nombre']}}</ion-col>
+        <!-- <ion-button (click)="editAlumno(alumno['id'])">Editar</ion-button>
+        <ion-button (click)="editAlumno(alumno['id'])">Eliminar</ion-button> -->
+      <ion-col>
+      <ion-input value="">Ingrese nuevo nombre</ion-input>
+      <ion-button (click)="getAlumno(alumn['id'])">Actualizar</ion-button>
+      <ion-button (click)="getAlumno(alumn['id'])">Eliminar</ion-button>
+    </ion-col>
+    </ion-item>
+  </ion-grid>
+</ion-list>
+<ion-button (click)="salir()">Salir</ion-button>
+<ion-button (click)="volver()">Volver</ion-button>
+</ion-content>

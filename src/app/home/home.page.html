@@ -1,0 +1,78 @@
+<ion-header solid="true">
+  <ion-toolbar color="medium">
+    <ion-title>Barrio Seguro App</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="true">
+    <ion-toolbar color="light">
+      <ion-title size="medium">¿Has visto un incidente?</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!--
+  <ion-radio-group value="strawberries">
+    <ion-radio value="003">Sección 003</ion-radio><br />
+    <ion-radio value="009">Sección 009</ion-radio><br />
+  </ion-radio-group>
+-->
+<ion-list>
+  <ion-item>
+    <ion-select label="Tipo de Incidente" placeholder="Seleccionar" [(ngModel)]="seccion" (ionChange)="getSelected(seccion)">
+      <ion-select-option value="Actitud sospechosa">Actitud Sospechosa</ion-select-option>
+      <ion-select-option value="Robo">Robo</ion-select-option>
+      <ion-select-option value="Violencia">Violencia</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+  <br>
+  <ion-grid>
+    <ion-row>
+      <ion-col><ion-button (click)="getAlumnos(seccion)" color="secondary">Cargar Datos</ion-button></ion-col>
+      <ion-col><ion-button (click)="getAlumnos(seccion)" color="secondary">Nuevo Incidente</ion-button></ion-col>
+      <ion-col><ion-button (click)="salir()" color="secondary">Salir</ion-button></ion-col>      
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <br>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+      <ion-col>ID</ion-col>
+      <ion-col>Nombre</ion-col>
+      <ion-col>Hechos</ion-col>
+    </ion-row>
+    <ion-item *ngFor="let alumno of alumnos">
+      <ion-col value="id">{{alumno['id']}}</ion-col>
+      <ion-col value="nombre">{{alumno['nombre']}}</ion-col>
+      <ion-col>
+        <ion-button (click)="editAlumno(alumno['id'], seccion)">Editar</ion-button>
+      </ion-col>
+      <!-- {{post['userId']}} {{post['id']}} {{post['title']}} -->
+         
+      <!-- {{post['usuario_user']}} {{post['usuario_nombre']}} {{post['usuario_estado']}} -->
+    </ion-item>
+  </ion-grid>
+</ion-list>
+<ion-list>
+  <ion-item *ngFor="let barcode of barcodes">
+    <ion-label position="stacked">{{ barcode.format }}</ion-label>
+    <ion-input type="text" [value]="barcode.rawValue"></ion-input>
+  </ion-item>
+</ion-list>
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button (click)="scan()" [disabled]="!isSupported">
+    <ion-icon name="scan"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+</ion-content>
+
+
+<ion-button id="present-alert" color="danger">SOS</ion-button>
+  <ion-alert
+    trigger="present-alert"
+    header="¿Está seguro?"
+    subHeader="El botón SOS es para reportar una emergencia inminente"
+    message="Continuar y llamar a autoridades"
+    [buttons]="alertButtons"
+  ></ion-alert>
+
